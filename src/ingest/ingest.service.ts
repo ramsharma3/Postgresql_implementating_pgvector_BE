@@ -15,12 +15,8 @@ export class IngestService {
     for (let i = 0; i < content.length; i++) {
       const char = content[i];
       if (char === '"') {
-        if (inQuotes && content[i + 1] === '"') {
-          currentLine += '"';
-          i++;
-        } else {
-          inQuotes = !inQuotes;
-        }
+        inQuotes = !inQuotes;
+        currentLine += char;
       } else if (char === '\n' || char === '\r') {
         if (inQuotes) {
           currentLine += char;
