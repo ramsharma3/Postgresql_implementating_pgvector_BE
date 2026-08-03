@@ -106,7 +106,9 @@ export class IngestService {
     let count = 0;
 
     for (const r of records) {
-      const { id, name, email, role, experience_level, availability, color } = r;
+      const { id, name, email, role, availability, color } = r;
+      const experience_level = r.experience_level || r.experienceLevel;
+      
       if (!id || !name || !role || !experience_level) continue;
 
       const avail = availability ? parseFloat(availability) : null;
@@ -142,7 +144,10 @@ export class IngestService {
     let count = 0;
 
     for (const r of records) {
-      const { id, name, description, status, repository_url, start_date, color } = r;
+      const { id, name, description, status, color } = r;
+      const repository_url = r.repository_url || r.repositoryUrl;
+      const start_date = r.start_date || r.startDate;
+
       if (!id || !name || !status) continue;
 
       const sDate = start_date ? new Date(start_date) : null;
@@ -178,7 +183,11 @@ export class IngestService {
     let count = 0;
 
     for (const r of records) {
-      const { id, title, doc_type, content, summary, created_at, updated_at, color } = r;
+      const { id, title, content, summary, color } = r;
+      const doc_type = r.doc_type || r.docType;
+      const created_at = r.created_at || r.createdAt;
+      const updated_at = r.updated_at || r.updatedAt;
+
       if (!id || !title || !doc_type) continue;
 
       const cAt = created_at ? new Date(created_at) : new Date();
@@ -219,9 +228,15 @@ export class IngestService {
     for (const r of records) {
       const { 
         id, name, category, license, version, description, color, 
-        language, ecosystem, data_model, supports_vector_native, provider,
-        context_window, is_multimodal, cost_per_1k_input_tokens, cost_per_1k_output_tokens, service_type 
+        language, ecosystem, provider
       } = r;
+      const data_model = r.data_model || r.dataModel;
+      const supports_vector_native = r.supports_vector_native || r.supportsVectorNative;
+      const context_window = r.context_window || r.contextWindow;
+      const is_multimodal = r.is_multimodal || r.isMultimodal;
+      const cost_per_1k_input_tokens = r.cost_per_1k_input_tokens || r.costPer1kInputTokens;
+      const cost_per_1k_output_tokens = r.cost_per_1k_output_tokens || r.costPer1kOutputTokens;
+      const service_type = r.service_type || r.serviceType;
 
       if (!id || !name || !category) continue;
 
