@@ -8,7 +8,7 @@ RUN npm run build
 
 FROM node:20-alpine AS runner
 WORKDIR /app
-NODE_ENV=production
+ENV NODE_ENV=production
 COPY package*.json ./
 RUN npm ci --only=production
 COPY --from=builder /app/dist ./dist
